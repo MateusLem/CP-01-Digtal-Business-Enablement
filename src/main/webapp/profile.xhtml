@@ -17,17 +17,22 @@
 	</div>
 	<br/>
 	<div id="body">
+		
 		<h:form id="form">
-			<p:growl id="messages" showDetail="true"/>
-					
 
-			
+			<p:growl id="messages" showDetail="true"/>
+
+			<p:tooltip for="name" value="Inform your name and surname" position="top"/>
+			<p:tooltip for="userProfile" value="Choose this option if you are a common user" position="top"/>
+			<p:tooltip for="administratorProfile" value="Choose this option if you are an administrator" position="top"/>
+			<p:tooltip for="email" value="Inform your email" position="top"/>
+			<p:tooltip for="pswd1" value="Inform your password" position="top"/>
+			<p:tooltip for="pswd2" value="Confirm your password" position="top"/>
+
+
 			<p:dialog header="New Profile" widgetVar="newProfile" modal="true" showEffect="fade" hideEffect="fade" resizable="false" >
-				
 				<p:panel id="newProfilePanel">
 					
-
-
 					<h:panelGrid columns="2" cellpadding="4">
 						<h:outputText value="Name *" />
 						<p:inputText id="name" value="#{profileBean.profileModel.name}" required="true" 
@@ -35,12 +40,13 @@
 							<f:validateLength maximum="100"/>
 						</p:inputText>
 						
+						
 
 						<h:outputText value="Profile *" />
 						<p:selectOneRadio id="profile" value="#{profileBean.profileModel.profile}" unselectable="true" required="true" 
 						requiredMessage="Profile is required!">
-							<f:selectItem itemLabel="User" itemValue="user"/>
-							<f:selectItem itemLabel="Administrator" itemValue="administrator"/>
+							<f:selectItem id="userProfile" itemLabel="User" itemValue="User"/>
+							<f:selectItem id="administratorProfile" itemLabel="Administrator" itemValue="Administrator"/>
 						</p:selectOneRadio>
 						
 
@@ -70,17 +76,22 @@
 			
 			
 			<p:panel>
-				<p:commandButton oncomplete="PF('newProfile').show()" style="background-color: #348a4b;" icon="pi pi-plus" value="Add" title="Add">
+				<p:commandButton oncomplete="PF('newProfile').show()" style="background-color: #348a4b;" icon="pi pi-plus" value="Add" id="add" title="Add">
 					<f:setPropertyActionListener value="#{profile}" target="#{profileBean.selectedProfile}" />
 				</p:commandButton>
+				<p:tooltip for="add" value="Register a new profile here!"/>
+
+				<p:commandButton id="update" value="Update" update="@parent" style="margin-left: 15rem;"/>
+				<p:tooltip for="update" value="If your page didn't update, try this button"/>
+
 			</p:panel>
 
 			
 
 			
-			<p:dataTable id="profileTable" var="profile" value="#{profileBean.findAll()}" paginator="true" rows="10" styleClass="mt-2">
+			<p:dataTable id="profileTable" var="profile" value="#{profileBean.findAll()}" paginator="true" rows="10" styleClass="mt-2" allowUnsorting="true" sortMode="single">
 
-				<p:column>
+				<p:column sortOrder="asc">
 					<f:facet name="header">
 						<h:outputText value="ID"/>
 					</f:facet>
