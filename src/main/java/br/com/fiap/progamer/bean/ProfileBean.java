@@ -42,11 +42,10 @@ public class ProfileBean {
 				&& !this.profileModel.getPasswordHash().isEmpty()) {
 			profileDao.save(this.profileModel);
 			this.profileModel = new ProfileModel();
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "As informações foram salvas com sucesso!", "INFO"));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "As informações foram salvas com sucesso!", "SUCCESS"));
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao tentar salvar!", "ERROR"));
 		}
-		// FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("form");
 	}
 	
 	public List<ProfileModel> findAll(){
