@@ -18,8 +18,7 @@
 	<br/>
 	<div id="body">
 		<h:form id="form">
-			
-			<p:growl id="messages"/>
+			<p:growl id="messages" showDetail="true"/>
 					
 
 			<!--Widget Profile-->
@@ -63,7 +62,7 @@
 						
 
 					</h:panelGrid>
-					<p:commandButton value="Save" style="width: 400px; align-content: center;" action="#{profileBean.save()}"  oncomplete="PF('newProfile').hide()"/>
+					<p:commandButton value="Save" style="width: 400px; align-content: center;" ajax="false" update="messages; form" action="#{profileBean.save()}" oncomplete="PF('newProfile').hide()"/>
 				</p:panel>
 			</p:dialog>
 

@@ -45,9 +45,8 @@ public class ProfileBean {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "As informações foram salvas com sucesso!", "INFO"));
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao tentar salvar!", "ERROR"));
-			FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("messages");
 		}
-		FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("form");
+		// FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("form");
 	}
 	
 	public List<ProfileModel> findAll(){
