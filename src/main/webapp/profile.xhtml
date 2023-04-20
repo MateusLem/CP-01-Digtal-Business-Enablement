@@ -19,42 +19,51 @@
 	<div id="body">
 		<h:form id="form">
 			
+			<p:growl id="messages"/>
+					
 
 			<!--Widget Profile-->
 			<p:dialog header="New Profile" widgetVar="newProfile" modal="true" showEffect="fade" hideEffect="fade" resizable="false" >
+				
 				<p:panel id="newProfilePanel">
-					<h:panelGrid columns="2" cellpadding="4">
+					
 
+
+					<h:panelGrid columns="2" cellpadding="4">
 						<h:outputText value="Name *" />
-						<p:inputText id="name" value="#{profileBean.profileModel.name}" required="true" requiredMessage="Name is required!" validatorMessage="Name must be a maximum of 100 characters">
+						<p:inputText id="name" value="#{profileBean.profileModel.name}" required="true" 
+						requiredMessage="Name is required!" validatorMessage="Name must be a maximum of 100 characters">
 							<f:validateLength maximum="100"/>
 						</p:inputText>
 						
 
 						<h:outputText value="Profile *" />
-						<p:selectOneRadio id="profile" value="#{profileBean.profileModel.profile}" unselectable="true" required="true" requiredMessage="Profile is required!">
+						<p:selectOneRadio id="profile" value="#{profileBean.profileModel.profile}" unselectable="true" required="true" 
+						requiredMessage="Profile is required!">
 							<f:selectItem itemLabel="User" itemValue="user"/>
 							<f:selectItem itemLabel="Administrator" itemValue="administrator"/>
 						</p:selectOneRadio>
 						
 
 						<h:outputText value="Email *" />
-						<p:inputText value="#{profileBean.profileModel.email}" required="true" requiredMessage="Email is required!" validatorMessage="Invalid email format">
-							<f:validateRegex pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"/>
+						<p:inputText id="email" value="#{profileBean.profileModel.email}" required="true" requiredMessage="Email is required!" validatorMessage="Invalid email format">
+							<f:validateRegex pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"/>	
 						</p:inputText>
 						
 						
+						
 						<p:outputLabel for="pswd1" styleClass="col-fixed" value="Password"/>
-						<p:password id="pswd1" value="#{profileBean.profileModel.passwordHash}" match="pswd2" label="Password 1" required="true" toggleMask="true" redisplay="true"/>
+						<p:password id="pswd1" value="#{profileBean.profileModel.passwordHash}" match="pswd2" label="Password 1" 
+						required="true" toggleMask="true" redisplay="true"/>
+						
 						
 						
 						<p:outputLabel for="pswd2" styleClass="col-fixed" value="Confirm Password"/>
 						<p:password id="pswd2" value="#{profileBean.profileModel.passwordHash}" label="Password 2" required="true"/>
 						
-						
-						<p:commandButton value="Save" icon="pi pi-save" action="#{profileBean.save()}" oncomplete="PF('newProfile').hide()"/>
 
 					</h:panelGrid>
+					<p:commandButton value="Save" style="width: 400px; align-content: center;" action="#{profileBean.save()}"  oncomplete="PF('newProfile').hide()"/>
 				</p:panel>
 			</p:dialog>
 
@@ -62,7 +71,7 @@
 			
 			<!--Botões-->
 			<p:panel>
-				<p:commandButton oncomplete="PF('newProfile').show()" icon="pi pi-plus" value="Add" title="Add">
+				<p:commandButton oncomplete="PF('newProfile').show()" style="background-color: #348a4b;" icon="pi pi-plus" value="Add" title="Add">
 					<f:setPropertyActionListener value="#{profile}" target="#{profileBean.selectedProfile}" />
 				</p:commandButton>
 			</p:panel>
@@ -72,12 +81,7 @@
 			<!--Colunas-->
 			<p:dataTable id="profileTable" var="profile" value="#{profileBean.findAll()}" paginator="true" rows="10" styleClass="mt-2">
 
-				<p:column>
-					<f:facet name="header">
-						<h:outputText value="ID"/>
-					</f:facet>
-					<h:outputText value="#{profile.id}"/>
-				</p:column>
+				
 
 
 				<p:column>
