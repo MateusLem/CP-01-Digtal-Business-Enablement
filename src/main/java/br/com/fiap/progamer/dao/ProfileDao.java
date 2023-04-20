@@ -30,8 +30,7 @@ public class ProfileDao {
 
 	public List<ProfileModel> findAll() {
 		@SuppressWarnings("unchecked")
-		TypedQuery<ProfileModel> query = (TypedQuery<ProfileModel>) entityManager.createQuery(
-				"SELECT e FROM ProfileModel e");
+		TypedQuery<ProfileModel> query = (TypedQuery<ProfileModel>) entityManager.createQuery("SELECT e FROM ProfileModel e");
 
 		return query.getResultList();
 	}
@@ -44,5 +43,12 @@ public class ProfileDao {
 		TypedQuery<ProfileModel> allQuery = entityManager.createQuery(all);
 		return allQuery.getResultList();
 	}
+
+	// public void deleteById(ProfileModel profileModel) {
+	// 	TypedQuery<ProfileModel> query =  entityManager.createQuery("DELETE FROM ProfileModel e WHERE e.id = :id", ProfileModel.class);
+	// 	query.setParameter("id", profileModel.getId());
+	// 	query.executeUpdate();
+	// }
 	
+
 }

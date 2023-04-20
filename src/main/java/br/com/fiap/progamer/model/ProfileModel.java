@@ -6,16 +6,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+// Foi adicionada uma dependensy no pom.xml para melhorar a segurança da senha
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 @Entity
-@Table(name="TB_SETUP")
+@Table(name="DBE_CP_TB_PROFILE")
 public class ProfileModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String name;
-	private String description;
-	private double price;
+	private String profile;
+	private String email;
+	private String passwordHash;
 	
 	public String getName() {
 		return name;
@@ -23,22 +27,32 @@ public class ProfileModel {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getDescription() {
-		return description;
+	public String getProfile() {
+		return profile;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+	public void setProfile(String profile) {
+		this.profile = profile;
 	}
-	public double getPrice() {
-		return price;
+	public String getEmail() {
+		return email;
 	}
-	public void setPrice(double price) {
-		this.price = price;
+	public void setEmail(String email) {
+		this.email = email;
 	}
+	
 	@Override
 	public String toString() {
-		return "SetupModel [name=" + name + ", description=" + description + ", price=" + price + "]";
+		return "ProfileModel [name=" + name + ", profile=" + profile + ", email=" + email + "]";
 	}
+	public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String password) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        this.passwordHash = passwordEncoder.encode(password);
+    }
+
 	public long getId() {
 		return id;
 	}
@@ -47,3 +61,4 @@ public class ProfileModel {
 	}
 	
 }
+

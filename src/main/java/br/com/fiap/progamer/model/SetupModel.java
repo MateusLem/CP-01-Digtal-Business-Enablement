@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="TB_SETUP")
+@Table(name="DBE_CP_TB_SETUP")
 public class SetupModel {
 
 	@Id

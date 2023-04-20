@@ -35,12 +35,15 @@ public class ProfileBean {
 
 	@Transactional
 	public void save() {
-		if(this.profileModel.getName()!="" && this.profileModel.getDescription()!="") {
+		if (!this.profileModel.getName().isEmpty() && !this.profileModel.getProfile().isEmpty()
+				&& !this.profileModel.getEmail().isEmpty() && !this.profileModel.getPasswordHash().isEmpty()) {
 			profileDao.save(this.profileModel);
 			this.profileModel = new ProfileModel();
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"As informações foram salvas com sucesso!","INFO"));
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "As informações foram salvas com sucesso!", "INFO"));
 		} else {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Erro ao tentar salvar!","ERROR"));
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao tentar salvar!", "ERROR"));
 		}
 	}
 	

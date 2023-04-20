@@ -20,8 +20,7 @@
 
 		<h:form id="form">
 			<p:panel>
-				<p:dataTable id="setupTable" var="setup"
-					value="#{setupBean.findAll()}">
+				<p:dataTable id="setupTable" var="setup" value="#{setupBean.findAll()}">
 					<p:column style="width: 15%">
 						<p:graphicImage name="images/setup_gamer.jpg" style="height: 140px"/>
 					</p:column>
@@ -31,23 +30,19 @@
 					</p:column>
 					<p:column style="text-align: center; width: 15%">
 						<h2>#{setup.price}</h2>
-						<p:commandButton update=":form:setupDetail"
-							oncomplete="PF('setupDialog').show()" icon="pi pi-search"
-							value="Detail" title="Detail" >
-							<f:setPropertyActionListener value="#{setup}"
-								target="#{setupBean.selectedSetup}" />
+						<p:commandButton update=":form:setupDetail" oncomplete="PF('setupDialog').show()" icon="pi pi-search" value="Detail" title="Detail" >
+							<f:setPropertyActionListener value="#{setup}" target="#{setupBean.selectedSetup}" />
 						</p:commandButton>
 					</p:column>
 				</p:dataTable>
 			</p:panel>
 
-			<p:dialog header="Details" widgetVar="setupDialog" modal="true"
-				showEffect="fade" hideEffect="fade" resizable="false">
+			<p:dialog header="Details" widgetVar="setupDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
 				<p:outputPanel id="setupDetail" style="text-align:center;">
 					<p:column rendered="#{not empty setupBean.selectedSetup}">
 						<div>
 							<h2>#{setupBean.selectedSetup.name}</h2>
-							<br />
+							<br/>
 						</div>
 						<p:graphicImage name="images/setup_gamer.jpg" />
 						<div>#{setupBean.selectedSetup.description}</div>
