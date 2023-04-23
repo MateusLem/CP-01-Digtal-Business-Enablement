@@ -36,14 +36,14 @@
 					<h:panelGrid columns="2" cellpadding="4">
 						<h:outputText value="Name *" />
 						<p:inputText id="name" value="#{profileBean.profileModel.name}" required="true" 
-						requiredMessage="Name is required!" validatorMessage="Name must be a maximum of 100 characters">
+						requiredMessage="Name is required!" redisplay="true" validatorMessage="Name must be a maximum of 100 characters">
 							<f:validateLength maximum="100"/>
 						</p:inputText>
 						
 						
 
 						<h:outputText value="Profile *" />
-						<p:selectOneRadio id="profile" value="#{profileBean.profileModel.profile}" unselectable="true" required="true" 
+						<p:selectOneRadio id="profile" value="#{profileBean.profileModel.profile}" redisplay="true" unselectable="true" required="true" 
 						requiredMessage="Profile is required!">
 							<f:selectItem id="userProfile" itemLabel="User" itemValue="User"/>
 							<f:selectItem id="administratorProfile" itemLabel="Administrator" itemValue="Administrator"/>
@@ -51,7 +51,7 @@
 						
 
 						<h:outputText value="Email *" />
-						<p:inputText id="email" value="#{profileBean.profileModel.email}" required="true" requiredMessage="Email is required!" validatorMessage="Invalid email format">
+						<p:inputText id="email" value="#{profileBean.profileModel.email}" required="true" redisplay="true" requiredMessage="Email is required!" validatorMessage="Invalid email format">
 							<f:validateRegex pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"/>	
 						</p:inputText>
 						
@@ -64,7 +64,7 @@
 						
 						
 						<p:outputLabel for="pswd2" styleClass="col-fixed" value="Confirm Password"/>
-						<p:password id="pswd2" value="#{profileBean.profileModel.passwordHash}" label="Password 2" required="true" requiredMessage="Confirm your password is required!" />
+						<p:password id="pswd2" redisplay="true" value="#{profileBean.profileModel.passwordHash}" label="Password 2" required="true" requiredMessage="Confirm your password is required!" />
 						
 
 					</h:panelGrid>
@@ -89,15 +89,10 @@
 			
 
 			
-			<p:dataTable id="profileTable" var="profile" value="#{profileBean.findAll()}" paginator="true" rows="10" styleClass="mt-2" allowUnsorting="true" sortMode="single">
+			<p:dataTable id="profileTable" var="profile" value="#{profileBean.findAll()}" paginator="true" rows="10" styleClass="mt-2">
 
-				<p:column sortOrder="asc">
-					<f:facet name="header">
-						<h:outputText value="ID"/>
-					</f:facet>
-					<h:outputText value="#{profile.id}"/>
-				</p:column>
 
+				
 
 				<p:column>
 					<f:facet name="header">

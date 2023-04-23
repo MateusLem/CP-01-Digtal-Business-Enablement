@@ -44,6 +44,7 @@ public class ProfileModel {
 	public String toString() {
 		return "ProfileModel [name=" + name + ", profile=" + profile + ", email=" + email + "]";
 	}
+
 	public String getPasswordHash() {
         return passwordHash;
     }
