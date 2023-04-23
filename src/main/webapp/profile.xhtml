@@ -69,6 +69,7 @@
 
 					</h:panelGrid>
 					<p:commandButton value="Save" style="width: 400px; align-content: center;" ajax="false" update="messages; form" action="#{profileBean.save()}" oncomplete="PF('newProfile').hide()"/>
+
 				</p:panel>
 			</p:dialog>
 
@@ -76,12 +77,16 @@
 			
 			
 			<p:panel>
+
 				<p:commandButton oncomplete="PF('newProfile').show()" style="background-color: #348a4b;" icon="pi pi-plus" value="Add" id="add" title="Add">
 					<f:setPropertyActionListener value="#{profile}" target="#{profileBean.selectedProfile}" />
 				</p:commandButton>
+
 				<p:tooltip for="add" value="Register a new profile here!"/>
 
+				
 				<p:commandButton id="update" value="Update" update="@parent" style="margin-left: 15rem;"/>
+
 				<p:tooltip for="update" value="If your page didn't update, try this button"/>
 
 			</p:panel>
